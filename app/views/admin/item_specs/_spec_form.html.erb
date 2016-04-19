@@ -1,0 +1,36 @@
+<%= form_for [:admin, @item, @item_spec], remote: true, html: { class: "form-horizontal well" } do |f| %>
+  <div class="form-group">
+    <%= f.label :style, "樣式名稱", class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :style, class: "form-control", placeholder: "請輸入名稱" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :style_amount, "樣式數量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.number_field :style_amount, class: "form-control", placeholder: "請輸入數量" %>
+    </div>
+  </div>
+
+  <!-- <div class="form-group">
+    <%= f.label "樣式圖片", class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= file_field_tag "images[]", { multiple: true, class: "form-control" } %>
+    </div>
+  </div> -->
+  
+  <div class="form-group">
+    <%= f.label :style_pic, "選擇樣式圖片", class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.file_field :style_pic, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "確認送出", class: "btn btn-primary" %>
+      <%= link_to "取消離開", admin_item_item_specs_path(@item), remote: true, class: "btn btn-warning" %>
+    </div>
+  </div>
+<% end %>

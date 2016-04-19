@@ -1,0 +1,50 @@
+<div clas="row">
+  <div class="content-box-large">
+    <ol class="breadcrumb">
+      <li><a href="<%= staff_root_path %>">萌萌屋</a></li>
+      <li class="<%= "active" if current_page?(controller: "staff/categories", action: "index") %>"><a href="<%= staff_categories_path %>">分類列表</a></li>
+      <li class="<%= "active" if current_page?(controller: "staff/items", action: "show") %>"><%= @item.name %></li>
+    </ol>
+    <div class="pull-right">
+      <%= link_to "編輯商品", edit_staff_item_path(@item), class: "btn btn-default btn-sm" %>
+      <%= link_to "商品圖片", staff_item_photos_path(@item), class: "btn btn-primary btn-sm" %>
+      <%= link_to "商品樣式", staff_item_item_specs_path(@item), class: "btn btn-success btn-sm" %>
+    </div>
+    <div class="item-cover-words-intro">
+      <div class="cover-intro col-md-4">
+        <!-- <%= image_tag(@item.intro_cover) %> -->
+        <%= item_cover(@item.cover) %>
+      </div>
+      <div class="words-intro col-md-5">
+        <dl class="dl-horizontal">
+          <dt>淘寶連結</dt>
+          <dd>
+            <%= link_to @item.url, target: "_blank" do %>
+              按此前往淘寶商品頁
+            <% end %>
+          </dd>
+          <dt>商品名稱</dt>
+          <dd><%= @item.name %></dd>          
+          <dt>商品價格</dt>
+          <dd>NT<%= number_to_currency(@item.price) %></dd>
+          <dt>商品敘述</dt>
+          <dd><%= raw @item.description %></dd>
+        </dl>
+      </div>
+    </div>
+    <br>
+    <!-- 商品圖片 -->
+    <div class="well">
+      <p class="lead">商品圖片</p>
+      <%= render partial: "photo_display", locals: { item: @item, photos: @photos } %>
+    </div>
+    <br>
+    <!-- 樣式圖片 -->
+    <div class="well">
+      <p class="lead">樣式圖片</p>
+      <dl class="dl-horizontal">
+        <%= render partial: "spec_display", locals: { specs: @specs } %>    
+      </dl>      
+    </div>
+  </div>
+</div>

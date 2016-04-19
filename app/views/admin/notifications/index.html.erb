@@ -1,0 +1,25 @@
+<div clas="row">
+  <div class="content-box-large">
+    <div class="breadcrumb-topbar">
+      <ol class="breadcrumb">
+        <li><a href="<%= admin_root_path %>">萌萌屋</a></li>
+        <li class="<%= "active" if current_page?(controller: "admin/notifications", action: "index") %>">推播訊息列表</li>
+      </ol>
+    </div>
+    <div class="pull-right">
+      <%= link_to "新增訊息", new_admin_notification_path, { class: "btn btn-primary" } %>
+    </div>
+    <h2>推播訊息列表</h2>
+    <div class="category-all-items">
+      <div class="panel-body">
+        <div class="apple_pagination">
+          <%= will_paginate @notification_page, :container => false %>
+        </div><br>
+        <%= render "notification_table" %>
+        <div class="apple_pagination">
+          <%= will_paginate @notification_page, :container => false %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

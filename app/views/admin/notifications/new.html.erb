@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="content-box-large">
+        <div class="breadcrumb-topbar">
+          <ol class="breadcrumb">
+            <li><a href="<%= admin_root_path %>">萌萌屋</a></li>
+            <li><a href="<%= admin_notifications_path %>">推播訊息列表</a></li>
+            <li class="<%= "active" if current_page?(new_admin_notification_path) %>">新增推播訊息
+            </li>
+          </ol>
+        </div>
+        <div class="panel-heading">
+          <div class="panel-title">
+            新增推播訊息
+          </div>
+            <div class="panel-options">
+              <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+              <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+            </div>
+          </div>
+        <div class="panel-body">
+          <%= form_for [:admin, @notification], html: { class: "form-horizontal" } do |f| %>
+            <%= render partial: "notification_form", locals: { f: f } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

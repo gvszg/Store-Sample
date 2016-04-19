@@ -1,0 +1,118 @@
+<div class="sidebar content-box" style="display: block;">
+  <ul class="nav">
+    <!-- Main menu -->
+    <li class="current">
+      <a href="<%= admin_root_path %>">
+        <i class="glyphicon glyphicon-home"></i>
+        管理首頁
+      </a>
+    </li>
+    <li>
+      <a href="<%= new_admin_item_path %>">
+        <i class="glyphicon glyphicon-plus"></i>
+        新增商品
+      </a>
+    </li>
+    <li class="submenu">
+      <a href="#">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        分類管理
+        <span class="caret pull-right"></span>
+      </a>
+      <!-- Sub menu -->
+      <ul>
+        <li>
+          <a href="<%= admin_categories_path %>">
+            分類列表
+          </a>
+        </li>
+        <% Category.all.each do |category| %>
+          <li>
+            <a href="<%= admin_category_path(category) %>">
+              <%= category.name %>
+            </a>
+          </li>
+        <% end %>
+        <li>
+          <a href="<%= new_admin_category_path %>">
+            新增分類
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="submenu">
+      <a href="#">
+        <i class="glyphicon glyphicon-user"></i>
+        用戶管理
+        <span class="caret pull-right"></span>
+      </a>
+      <!-- Sub menu -->
+      <ul>
+        <li>
+          <a href="<%= admin_users_path %>">
+            用戶資料列表
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            用戶選項
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="submenu">
+      <a href="#">
+        <i class="fa fa-shopping-bag"></i>訂單管理
+        <span class="caret pul-right"></span>
+      </a>
+      <!-- Sub menu -->
+      <ul>
+        <li><a href="<%= admin_orders_path %>">訂單列表</a></li>
+        <li><a href="<%= exporting_files_admin_orders_path %>">寄件列表</a></li>
+        <li><a href="#">訂單選項</a></li>
+      </ul>
+    </li>
+    <li class="submenu">
+      <a href="#">
+        <i class="fa fa-bell"></i>推播管理
+        <span class="caret pul-right"></span>
+      </a>
+      <!-- Sub menu -->
+      <ul>
+        <li><a href="<%= admin_notifications_path %>">推播訊息</a></li>
+        <li><a href="#">註冊裝置</a></li>
+      </ul>
+    </li>
+    <li class="submenu">
+      <a href="#">
+        <i class="glyphicon glyphicon-stats"></i>統計圖表
+        <span class="caret pul-right"></span>
+      </a>
+      <!-- Sub menu -->
+      <ul>
+        <li>
+          <a href="#">
+            銷售圖表
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            圖表選項
+          </a>
+        </li>        
+      </ul>
+    </li>
+    <li><a href="#"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>    
+    <li class="submenu">
+      <a href="#">
+        <i class="glyphicon glyphicon-list"></i> Pages
+        <span class="caret pull-right"></span>
+      </a>
+      <!-- Sub menu -->
+      <ul>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Signup</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<div clas="row">
+  <div class="content-box-large">
+    <ol class="breadcrumb">
+      <li><a href="<%= admin_root_path %>">萌萌屋</a></li>
+      <li><a href="<%= admin_notifications_path %>">推播訊息列表</a></li>
+      <li class="<%= "active" if current_page?(admin_notifications_path(@notification)) %>">
+        <%= @notification.content_title %>
+      </li>
+    </ol>
+    <div class="pull-right">
+      <%= link_to "回上頁", admin_notifications_path, { class: "btn btn-default" } %>
+    </div>
+    <div class="notification-intro">
+      <div class="noti-cover col-md-4">
+        <%= image_tag(@notification.send_content_pic) %>
+      </div>
+      <div class="noti-message col-md-8">
+        <dl class="dl-horizontal">
+          <dt>推播商品</dt>
+          <dd><%= link_to @item.name, admin_item_path(@item) %></dd>
+          <dt>訊息標題</dt>
+          <dd><%= @notification.content_title %></dd>
+          <dt>訊息內容</dt>
+          <dd><%= @notification.content_text %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

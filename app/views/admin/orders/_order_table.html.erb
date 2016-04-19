@@ -1,0 +1,48 @@
+<div class="panel-body">
+  <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+    <thead>      
+      <tr>
+        <th>編號</th>
+        <th>訂購日期</th>
+        <th>訂購用戶</th>
+        <th>聯絡電話</th>
+        <th>總金額</th>
+        <th>訂單狀態</th>
+        <th>操作選項</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td>
+            <%= render(partial: "info_and_items_list", locals: { order: order }) %>            
+          </td>
+          <td><%= order.created_on %></td>
+          <td><%= link_to order.info_user_name, admin_user_path(order.user) %></td>
+          <td><%= phone_number_looking(order) %></td>
+          <td><%= order.total %></td>
+          <td>
+            <%= link_to "新訂單", "#",{ id: "order-#{order.id}-placed", class: "btn btn-default #{order.status == "新訂單" ? "btn-lg" : "btn-xs"}" } %>
+            <%= link_to "處理中", order_processing_admin_order_path(order),{ method: :patch, remote: true, id: "order-#{order.id}-processing", class: "btn #{order.status == "處理中" ? "btn-primary btn-lg" : "btn-default btn-xs"}" } %>
+            <%= link_to "已出貨", item_shipping_admin_order_path(order), { method: :patch, remote: true, id: "order-#{order.id}-shipping", class: "btn #{order.status == "已出貨" ? "btn-success btn-lg" : "btn-default btn-xs"}" } %>
+            <%= link_to "完成取貨", item_shipped_admin_order_path(order), { method: :patch, remote: true, id: "order-#{order.id}-shipped", class: "btn #{order.status == "完成取貨" ? "btn-info btn-lg" : "btn-default btn-xs"}" } %>
+            <%= link_to "訂單取消", order_cancelled_admin_order_path(order), { method: :patch, remote: true, id: "order-#{order.id}-cancel", class: "btn #{order.status == "訂單取消" ? "btn-warning btn-lg" : "btn-default btn-xs"}" } %>
+          </td>
+          <td>
+            <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              按此選擇
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu list-group" aria-labelledby="dropdownMenu4">
+              <li><%= link_to "查看" %></li>
+              <li><%= link_to "編輯" %></li>
+              <li><%= link_to "刪除" %></li>
+            </ul>
+          </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

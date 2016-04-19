@@ -1,0 +1,50 @@
+<div class="form-group">
+  <%= f.label :url, "淘寶連結", class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.url_field :url, class: "form-control", placeholder: "請輸入連結", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :name, "商品名稱", class: "col-sm-2 control-label" %>  
+  <div class="col-sm-10">
+    <%= f.text_field :name, class: "form-control", placeholder: "請輸入名稱", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :price, "商品價格", class: "col-sm-2 control-label" %> 
+  <div class="col-sm-10">
+    <%= f.number_field :price, class: "form-control", placeholder: "請輸入價格", required: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :cover, "商品封面圖", class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.file_field :cover, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :description, "商品描述", class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.cktext_area :description, rows: 6, class: "form-control", placeholder: "請輸入描述", required: true, :ckeditor => {:language => 'zh-TW'} %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label "商品分類", class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <%= cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit "確認送出", class: "btn btn-primary" %>
+    <%= link_to "取消離開", staff_categories_path, class: "btn btn-warning" %>
+  </div>
+</div>

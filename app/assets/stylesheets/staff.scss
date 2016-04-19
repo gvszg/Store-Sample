@@ -1,0 +1,42 @@
+/* === Common CSS == */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "styles";
+@import "pnotify.custom.min";
+@import "pagination";
+@import "jquery-ui/core";
+@import "jquery-ui/sortable";
+@import "jquery-ui/draggable";
+@import "jquery-ui/resizable";
+
+/* === Custom CSS === */
+/*預設字體大小*/
+body {
+  font-size: 1.8em;
+}
+
+/*商品顯示頁*/
+div.item-cover-words-intro {
+  min-height: 500px;  
+}
+
+.carousel {
+  width: 620px;
+  height: 420px;
+}
+
+.carousel-inner .item img {
+  margin: 0 auto;
+}
+
+.spec-style-stock span {
+  color: rgb(255, 34, 228);
+}
+
+/*商品排序拖曳按鈕*/
+#items-sort-list .handle {
+  font-size: 12px;
+  color: #777;
+  cursor: move;
+}

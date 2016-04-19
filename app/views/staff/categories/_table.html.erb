@@ -1,0 +1,49 @@
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+  <thead>
+    <tr>
+      <th>商品排序</th>
+      <th>商品狀態</th>
+      <th>商品圖片</th>
+      <th>商品名稱</th>
+      <th>商品價格</th>
+      <th>操作選項</th>
+    </tr>
+  </thead>
+  <tbody id="items-sort-list" data-sort-url="<%= sort_items_priority_admin_categories_path %>">
+    <% @category_items.each do |item| %>
+      <tr id="item-<%= item.id %>">
+        <td>
+          <button class="btn btn-primary btn-xs" type="button">
+            排序：<span class="badge"><%= item.position %></span>
+          </button>
+          <!-- <span id="item-<%= item.id %>-position"><%= item.position %></span> -->
+          <!-- <span class="handle btn btn-default btn-xs"><i class="fa fa-arrows"></i>按住我</span> -->
+        </td>
+        <td id="status-<%= item.id %>">        
+          <%= item_status(item.status) %>
+        </td>
+        <td>
+          <%= link_to staff_item_path(item) do %>
+            <%= item_icon(item.cover) %>
+          <% end %>
+        </td>
+        <td><%= link_to item.name, staff_item_path(item) %></td>
+        <td><%= item.price %></td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              按此選擇
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu list-group" aria-labelledby="dropdownMenu4">
+              <li><%= link_to "編輯", edit_staff_item_path(item) %></li>
+              <li><%= link_to "圖片", staff_item_photos_path(item) %></li>
+              <li><%= link_to "樣式", staff_item_item_specs_path(item) %></li>
+              <li><%= link_to "刪除", staff_item_path(item), method: :delete, data: { confirm: "確定刪除？", disable_with: "刪除中..." } %></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

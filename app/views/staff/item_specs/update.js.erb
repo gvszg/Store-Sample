@@ -1,0 +1,20 @@
+<% if @item_spec.valid? %>
+  <% if @item_spec.style_amount == 0 %>
+    $("#style-<%= @item_spec.id %>-stock").html("無庫存")
+    $(function(){
+      new PNotify({
+        title: '此商品已無庫存'
+      });
+    });
+  <% else %>
+    $("#style-<%= @item_spec.id %>-stock").html("<%= @item_spec.style_amount %>")
+    $("#style-<%= @item_spec.id %>-stock").html("<%= @item_spec.style_amount %>")
+    $(function(){
+      new PNotify({
+        title: '庫存數量已修改'
+      });
+    });
+  <% end %>
+<% else %>
+  alert("喔喔，數量不太對！");
+<% end %>

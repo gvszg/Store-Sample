@@ -1,0 +1,90 @@
+<div class="panel-body" id="specs-index-list">
+  <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+    <div class="pull-right">
+      <%= link_to "返回上頁", admin_item_path(@item), class: "btn btn-default btn-sm" %>
+      <%= link_to "新增樣式", new_admin_item_item_spec_path(@item), class: "btn btn-primary btn-sm", id: "add-new-spec", remote: true %>
+    </div>
+    <div class="breadcrumb-topbar">
+      <ol class="breadcrumb">
+        <li><a href="#">萌萌屋</a></li>
+        <li><a href="<%= admin_item_path(@item) %>"><%= @item.name %></a></li>
+        <li class="<%= "active" if current_page?(controller: "admin/photos") %>">
+          樣式列表
+        </li>
+      </ol>
+    </div>
+    <thead>
+      <tr>
+        <th>樣式圖片</th>
+        <th>樣式狀態</th>
+        <th>樣式名稱</th>
+        <th>樣式數量</th>
+        <th>操作選項</th>
+      </tr>
+    </thead>
+    <tbody id="specs-table-list">
+      <% @item_specs.each do |spec| %>
+        <tr id="spec-<%= spec.id %>">
+          <td>
+            <%= spec_photo(spec) %>
+          </td>
+          <td id="status-<%= spec.id %>">
+            <%= link_to (spec.on_shelf? ? off_shelf_admin_item_item_spec_path(@item, spec) : on_shelf_admin_item_item_spec_path(@item, spec)), method: :patch, remote: true do %>
+              <%= spec_status(spec.status) %>
+            <% end %>            
+          </td>
+          <td><%= raw(spec.style) %></td>
+          <td>
+            <div>
+              <p class="lead spec-style-stock">目前庫存數：<span id="style-<%= spec.id %>-stock"><%= show_item_stock(spec.style_amount) %></span></p>
+            </div>
+            <div class="update-stock-manullaly">
+              <%= form_for [:admin, @item, spec], remote: true, html: { class: "form-inline" } do |f| %>
+              <div class="form-group col-md-4">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-archive"></i></div>
+                  <%= f.number_field :style_amount, min: "0", class: "form-control" %>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-warning">修改數量</button>                
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <%= button_tag "編輯", data: { toggle: "modal", target: "#spec-#{spec.id}-edit" }, type: "button", class: "btn btn-default btn-xs" %>
+            <%= render partial: "edit_form", locals: { spec: spec } %>
+            <%= link_to "刪除", admin_item_item_spec_path(@item, spec), method: :delete, data: { confirm: "確定刪除?", disable_with: "刪除中..." }, class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="well">
+    <p class="lead">新增樣式</p>
+    <%= form_for [:admin, @item, ItemSpec.new], html: { class: "form-horizontal well" } do |f| %>
+      <div class="form-group">
+        <%= f.label :style, "樣式名稱", class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_field :style, class: "form-control", placeholder: "請輸入名稱" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :style_amount, "樣式數量", class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= f.number_field :style_amount, class: "form-control", placeholder: "請輸入數量" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :style_pic, "樣式圖片", class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= f.file_field :style_pic, multiple: true, name: "item_spec[style_pic]" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= link_to "顯示所有新增樣式", admin_item_item_specs_path(@item), class: "btn btn-warning" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

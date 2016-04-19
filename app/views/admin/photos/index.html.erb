@@ -1,0 +1,39 @@
+<div class="panel-body">
+  <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+    <div class="pull-right">
+      <%= link_to "返回上頁", admin_item_path(@item), class: "btn btn-default btn-sm" %>
+      <%= link_to "新增圖片", new_admin_item_photo_path, class: "btn btn-primary btn-sm" %>
+    </div>
+    <div class="breadcrumb-topbar">
+      <ol class="breadcrumb">
+        <li><a href="#">萌萌屋</a></li>
+        <li><a href="<%= admin_item_path(@item) %>"><%= @item.name %></a></li>
+        <li class="<%= "active" if current_page?(controller: "admin/photos") %>">
+          圖片列表
+        </li>
+      </ol>
+    </div>
+    <thead>
+      <tr>
+        <th>圖片</th>
+        <th>圖片敘述</th>
+        <th>操作選項</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @photos.each do |photo| %>
+        <tr>
+          <td>
+            <%= item_photo(photo, "thumb") %>
+          </td>
+          <td><%= raw photo.photo_intro %></td>
+          <td>            
+            <%= button_tag "編輯", data: { toggle: "modal", target: "#photo-#{photo.id}-edit" }, type: "button", class: "btn btn-default btn-xs" %>
+            <%= render partial: "edit_form", locals: { photo: photo } %>
+            <%= link_to "刪除", admin_item_photo_path(@item, photo), method: :delete, data: { confirm: "確定刪除?", disable_with: "刪除中..." }, class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

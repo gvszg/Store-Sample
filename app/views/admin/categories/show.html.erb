@@ -1,0 +1,23 @@
+<div clas="row">
+  <div class="content-box-large">
+    <div class="breadcrumb-topbar">
+      <ol class="breadcrumb">
+        <li><a href="#">萌萌屋</a></li>
+        <li class="<%= "active" if current_page?(controller: "admin/categories", action: "index") %>"><a href="<%= admin_categories_path %>">分類列表</a></li>
+        <li class="<%= "active" if current_page?(controller: "admin/categories", action: "index") %>"><%= @category.name %></li>
+      </ol>
+    </div>
+    <h2><%= @category.name %></h2>
+    <div class="category-all-items">
+      <div class="panel-body">
+        <div class="apple_pagination">
+          <%= will_paginate @category_page, :container => false %>
+        </div><br>
+        <%= render "table" %>
+        <div class="apple_pagination">
+          <%= will_paginate @category_page, :container => false %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

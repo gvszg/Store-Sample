@@ -1,0 +1,28 @@
+<!-- Modal -->
+<div class="modal fade" id="spec-<%= spec.id %>-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">編輯樣式</h4>
+      </div>
+      <%= form_for [:staff, @item, spec], html: { class: "form-horizontal" } do |f| %>
+        <div class="form-group">            
+          <%= f.label :style, "樣式名稱", class: "col-sm-2 control-label" %>    
+          <div class="col-sm-9">
+            <%= f.text_area :style, { rows: 6, id: "item-spec-#{spec.id}", class: "form-control", placeholder: "請輸入描述" } %>        
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit "確認送出", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">關閉視窗</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+$("#status-<%= @item_spec.id %>").html("已下架")
+$(function(){
+  new PNotify({
+    title: '已將此樣式下架'
+  });
+});
