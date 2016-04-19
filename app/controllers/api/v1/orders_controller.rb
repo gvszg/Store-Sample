@@ -33,6 +33,8 @@ class Api::V1::OrdersController < ApiController
           item.item_price = product[:price]        
           item.save!
         end
+
+        OrderMailer.notify_order_placed(order).deliver_later!
       end
 
       render json: "Succes：新增一筆訂單"

@@ -44,6 +44,7 @@ group :development do
   gem 'meta_request'
   gem 'faker'
   gem 'pry-rails'
+  gem "letter_opener"
 
   # 檢查安全性
   gem 'brakeman', :require => false

@@ -39,6 +39,9 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener
+
   # Bullet 檢查 N + 1 Query 問題(對資料庫額外執行多個查詢子句而影響效能)
   config.after_initialize do
     Bullet.enable = true
