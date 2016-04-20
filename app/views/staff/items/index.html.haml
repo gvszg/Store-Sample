@@ -1,0 +1,21 @@
+.row
+  .row
+    .col-md-12.panel-warning
+      .content-box-header.panel-heading
+        .panel-title 商品列表
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .content-box-large.box-with-header
+        .apple_pagination
+          = will_paginate @item_page, :container => false
+        %br/
+        %ul
+          - @items.each do |item|
+            = link_to staff_item_path(item) do
+              %li= item.name
+        .apple_pagination
+          = will_paginate @item_page, :container => false
+        %br/

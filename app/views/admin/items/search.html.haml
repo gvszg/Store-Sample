@@ -1,0 +1,37 @@
+.row
+  .row
+    .col-md-12.panel-warning
+      .content-box-header.panel-heading
+        .panel-title 商品查詢結果
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .content-box-large.box-with-header
+        .apple_pagination
+          = will_paginate @search_results_page, :container => false
+        %br/
+        .panel-body
+          %table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+            %thead
+              %tr
+                %th 商品圖片
+                %th 商品名稱
+                %th 商品價格
+                %th 淘寶連結
+            %tbody
+              - @search_results.each do |item|
+                %tr
+                  %td
+                    = link_to admin_item_path(item) do
+                      = item_icon(item.cover)
+                  %td
+                    = link_to item.name, admin_item_path(item)
+                  %td
+                    = item.price
+                  %td
+                    = link_to item.url, target: "_blank" do
+                      按此前往淘寶商品頁
+        .apple_pagination
+          = will_paginate @search_results_page, :container => false

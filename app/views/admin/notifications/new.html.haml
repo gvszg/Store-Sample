@@ -1,0 +1,23 @@
+.row
+  .row
+    .col-md-10
+      .content-box-large
+        .breadcrumb-topbar
+          %ol.breadcrumb
+            %li
+              %a{:href => admin_root_path} 萌萌屋
+            %li
+              %a{:href => admin_notifications_path} 推播訊息列表
+            %li{:class => "#{"active" if current_page?(new_admin_notification_path)}"}
+              新增推播訊息
+        .panel-heading
+          .panel-title
+            新增推播訊息
+          .panel-options
+            %a{"data-rel" => "collapse", :href => "#"}
+              %i.glyphicon.glyphicon-refresh
+            %a{"data-rel" => "reload", :href => "#"}
+              %i.glyphicon.glyphicon-cog
+        .panel-body
+          = form_for [:admin, @notification], html: { class: "form-horizontal" } do |f|
+            = render partial: "notification_form", locals: { f: f }

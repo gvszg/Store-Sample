@@ -1,0 +1,21 @@
+.row
+  .col-md-10
+    .content-box-large
+      .breadcrumb-topbar
+        %ol.breadcrumb
+          %li
+            %a{:href => "#"} 萌萌屋
+          %li
+            %a{:href => "#{admin_item_path(@item)}"}= @item.name
+          %li{:class => "#{"active" if current_page?(controller: "admin/photos")}"}
+            新增樣式
+      .panel-heading
+        .panel-title
+          新增商品樣式
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .panel-body
+        = render(partial: "spec_form")

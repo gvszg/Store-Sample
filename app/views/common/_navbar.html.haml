@@ -1,0 +1,27 @@
+.container
+  .row
+    .col-md-5
+      / Logo
+      .logo
+        %h1
+          %a{:href => staff_root_path} 助理後台
+    .col-md-5
+      .row
+        .col-lg-12
+          .input-group.form
+            %input.form-control{:placeholder => "Search...", :type => "text"}/
+            %span.input-group-btn
+              %button.btn.btn-primary{:type => "button"} 搜尋
+            %span.input-group-btn
+              %button.btn.btn-info{:type => "button"} 進階搜尋
+    .col-md-2
+      .navbar.navbar-inverse{:role => "banner"}
+        %nav.collapse.navbar-collapse.bs-navbar-collapse.navbar-right{:role => "navigation"}
+          %ul.nav.navbar-nav
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Hi, 助理
+                %b.caret
+              %ul.dropdown-menu.animated.fadeInUp
+                %li
+                  %a{"data-method" => "delete", :href => signout_path} 登出後台

@@ -1,0 +1,28 @@
+.panel-body
+  %table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %thead
+      %tr
+        %th 編號
+        %th 臉書ID
+        %th 名稱
+        %th 全名
+        %th 性別
+        %th 聯絡電話
+        %th 聯絡地址
+        %th 操作選項
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.uid
+          %td= user.user_name
+          %td= user.real_name
+          %td= user.gender
+          %td= user.phone
+          %td= user.address
+          %td
+            %ul.list-unstyled
+              / <li><haml_loud> link_to &quot;查看&quot;, admin_user_path(user.uid) </haml_loud></li>
+              %li= link_to "查看", admin_user_path(user)
+              %li= link_to "編輯"
+              %li= link_to "刪除"

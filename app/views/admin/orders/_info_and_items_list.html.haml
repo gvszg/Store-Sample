@@ -1,0 +1,44 @@
+%button.btn.btn-default.btn-sm{"data-target" => "#order-#{order.id}", "data-toggle" => "modal", :type => "button"}
+  = order.id
+/ Modal
+.modal.fade{"aria-labelledby" => "myModalLabel", :id => "order-#{order.id}", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title 訂單明細
+      .modal-body
+        %h4#myModalLabel.modal-title 收件明細
+        %ul.list-group
+          - if order.info
+            %li.list-group-item
+              收件人姓名： #{order.info.ship_name}
+            %li.list-group-item
+              聯絡電話： #{order.info.ship_phone}
+            %li.list-group-item
+              門市店號： #{order.info_store_code}
+            %li.list-group-item
+              門市名稱： #{order.info_store_name(order.info_store_code)}
+            %li.list-group-item
+              門市地址： #{order.info_store_address(order.info_store_code)}
+        %br/
+        %h4#myModalLabel.modal-title 商品明細
+        %table.table.table-bordered
+          %thead
+            %tr.active
+              %th 商品名稱
+              %th 商品樣式
+              %th 購買數量
+              %th 商品單價
+          %tbody
+            - if order.items
+              - order.items.each do |item|
+                %tr.success
+                  %td
+                    = link_to item.item_name, admin_item_path(item.source_item_id)
+                  %td= item.item_style
+                  %td= item.item_quantity
+                  %td= item.item_price
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

@@ -1,0 +1,35 @@
+%table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+  %thead
+    %tr
+      %th 商品排序
+      %th 商品狀態
+      %th 商品圖片
+      %th 商品名稱
+      %th 商品價格
+      %th 操作選項
+  %tbody#items-sort-list{"data-sort-url" => sort_items_priority_admin_categories_path}
+    - @category_items.each do |item|
+      %tr{:id => "item-#{item.id}"}
+        %td
+          %button.btn.btn-primary.btn-xs{:type => "button"}
+            排序：
+            %span.badge= item.position
+          / <span id="item-<haml_loud> item.id </haml_loud>-position"><haml_loud> item.position </haml_loud></span>
+          / <span class="handle btn btn-default btn-xs"><i class="fa fa-arrows"></i>按住我</span>
+        %td{:id => "status-#{item.id}"}
+          = item_status(item.status)
+        %td
+          = link_to staff_item_path(item) do
+            = item_icon(item.cover)
+        %td= link_to item.name, staff_item_path(item)
+        %td= item.price
+        %td
+          .dropdown
+            %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              按此選擇
+              %span.caret
+            %ul.dropdown-menu.list-group{"aria-labelledby" => "dropdownMenu4"}
+              %li= link_to "編輯", edit_staff_item_path(item)
+              %li= link_to "圖片", staff_item_photos_path(item)
+              %li= link_to "樣式", staff_item_item_specs_path(item)
+              %li= link_to "刪除", staff_item_path(item), method: :delete, data: { confirm: "確定刪除？", disable_with: "刪除中..." }

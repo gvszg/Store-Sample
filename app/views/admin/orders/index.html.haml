@@ -1,0 +1,17 @@
+.row
+  .row
+    .col-md-12.panel-warning
+      .content-box-header.panel-heading
+        .panel-title 訂單列表
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .content-box-large.box-with-header
+        .apple_pagination
+          = will_paginate @order_page, :container => false
+        %br/
+        = render "order_table"
+        .apple_pagination
+          = will_paginate @order_page, :container => false

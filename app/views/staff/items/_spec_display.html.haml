@@ -1,0 +1,8 @@
+- @specs.each do |spec|
+  %dt 樣式圖片
+  %dd= spec_photo(spec)
+  %dt 樣式名稱
+  %dd= raw(spec.style)
+  %dt 樣式庫存
+  %dd= spec.style_amount
+  %hr/

@@ -1,0 +1,8 @@
+- if @item_spec.new_record?
+  alert("Failed to upload images: #{j @item_spec.errors.full_messages.join(', ').html_save}");
+- else
+  $(function(){
+  new PNotify({
+  title: '已新增 #{@item_spec.style} 樣式'
+  });
+  });

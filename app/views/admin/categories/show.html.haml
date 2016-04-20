@@ -1,0 +1,18 @@
+%div{:clas => "row"}
+  .content-box-large
+    .breadcrumb-topbar
+      %ol.breadcrumb
+        %li
+          %a{:href => "#"} 萌萌屋
+        %li{:class => "#{"active" if current_page?(controller: "admin/categories", action: "index")}"}
+          %a{:href => admin_categories_path} 分類列表
+        %li{:class => "#{"active" if current_page?(controller: "admin/categories", action: "index")}"}= @category.name
+    %h2= @category.name
+    .category-all-items
+      .panel-body
+        .apple_pagination
+          = will_paginate @category_page, :container => false
+        %br/
+        = render "table"
+        .apple_pagination
+          = will_paginate @category_page, :container => false

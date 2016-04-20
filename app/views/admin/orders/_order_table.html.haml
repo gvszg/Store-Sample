@@ -1,0 +1,35 @@
+.panel-body
+  %table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %thead
+      %tr
+        %th 編號
+        %th 訂購日期
+        %th 訂購用戶
+        %th 聯絡電話
+        %th 總金額
+        %th 訂單狀態
+        %th 操作選項
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td
+            = render(partial: "info_and_items_list", locals: { order: order })
+          %td= order.created_on
+          %td= link_to order.info_user_name, admin_user_path(order.user)
+          %td= phone_number_looking(order)
+          %td= order.total
+          %td
+            = link_to "新訂單", "#",{ id: "order-#{order.id}-placed", class: "btn btn-default #{order.status == "新訂單" ? "btn-lg" : "btn-xs"}" }
+            = link_to "處理中", order_processing_admin_order_path(order),{ method: :patch, remote: true, id: "order-#{order.id}-processing", class: "btn #{order.status == "處理中" ? "btn-primary btn-lg" : "btn-default btn-xs"}" }
+            = link_to "已出貨", item_shipping_admin_order_path(order), { method: :patch, remote: true, id: "order-#{order.id}-shipping", class: "btn #{order.status == "已出貨" ? "btn-success btn-lg" : "btn-default btn-xs"}" }
+            = link_to "完成取貨", item_shipped_admin_order_path(order), { method: :patch, remote: true, id: "order-#{order.id}-shipped", class: "btn #{order.status == "完成取貨" ? "btn-info btn-lg" : "btn-default btn-xs"}" }
+            = link_to "訂單取消", order_cancelled_admin_order_path(order), { method: :patch, remote: true, id: "order-#{order.id}-cancel", class: "btn #{order.status == "訂單取消" ? "btn-warning btn-lg" : "btn-default btn-xs"}" }
+          %td
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                按此選擇
+                %span.caret
+              %ul.dropdown-menu.list-group{"aria-labelledby" => "dropdownMenu4"}
+                %li= link_to "查看"
+                %li= link_to "編輯"
+                %li= link_to "刪除"

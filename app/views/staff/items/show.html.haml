@@ -1,0 +1,40 @@
+%div{:clas => "row"}
+  .content-box-large
+    %ol.breadcrumb
+      %li
+        %a{:href => staff_root_path} 萌萌屋
+      %li{:class => "#{"active" if current_page?(controller: "staff/categories", action: "index")}"}
+        %a{:href => staff_categories_path} 分類列表
+      %li{:class => "#{"active" if current_page?(controller: "staff/items", action: "show")}"}= @item.name
+    .pull-right
+      = link_to "編輯商品", edit_staff_item_path(@item), class: "btn btn-default btn-sm"
+      = link_to "商品圖片", staff_item_photos_path(@item), class: "btn btn-primary btn-sm"
+      = link_to "商品樣式", staff_item_item_specs_path(@item), class: "btn btn-success btn-sm"
+    .item-cover-words-intro
+      .cover-intro.col-md-4
+        / <haml_loud> image_tag(@item.intro_cover) </haml_loud>
+        = item_cover(@item.cover)
+      .words-intro.col-md-5
+        %dl.dl-horizontal
+          %dt 淘寶連結
+          %dd
+            = link_to @item.url, target: "_blank" do
+              按此前往淘寶商品頁
+          %dt 商品名稱
+          %dd= @item.name
+          %dt 商品價格
+          %dd
+            NT#{number_to_currency(@item.price)}
+          %dt 商品敘述
+          %dd= raw @item.description
+    %br/
+    / 商品圖片
+    .well
+      %p.lead 商品圖片
+      = render partial: "photo_display", locals: { item: @item, photos: @photos }
+    %br/
+    / 樣式圖片
+    .well
+      %p.lead 樣式圖片
+      %dl.dl-horizontal
+        = render partial: "spec_display", locals: { specs: @specs }

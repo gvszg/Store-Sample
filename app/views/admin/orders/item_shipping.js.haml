@@ -1,0 +1,8 @@
+$("#order-#{@order.id}-processing").removeClass().addClass("btn btn-default btn-xs")
+$("#order-#{@order.id}-shipping").removeClass().addClass("btn btn-success btn-lg")
+$("#order-#{@order.id}-placed").addClass("btn-xs")
+$("#order-#{@order.id}-shipped").removeClass().addClass("btn btn-default btn-xs")
+$("#order-#{@order.id}-cancel").removeClass().addClass("btn btn-default btn-xs")
+$(function(){
+new PNotify({title: '已將訂單設為已出貨'});
+});
