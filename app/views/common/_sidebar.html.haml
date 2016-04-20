@@ -1,0 +1,25 @@
+.sidebar.content-box{:style => "display: block;"}
+  %ul.nav
+    / Main menu
+    %li.current
+      %a{:href => staff_root_path}
+        %i.glyphicon.glyphicon-home
+        管理首頁
+    %li
+      %a{:href => new_staff_item_path}
+        %i.glyphicon.glyphicon-plus
+        新增商品
+    %li.submenu
+      %a{:href => "#"}
+        %i.glyphicon.glyphicon-list-alt
+        分類管理
+        %span.caret.pull-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => staff_categories_path}
+            分類列表
+        - Category.all.each do |category|
+          %li
+            %a{:href => "#{staff_category_path(category)}"}
+              = category.name

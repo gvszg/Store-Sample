@@ -1,0 +1,36 @@
+.row
+  .col-md-10
+    .content-box-large
+      .breadcrumb-topbar
+        %ol.breadcrumb
+          %li
+            %a{:href => staff_root_path} 萌萌屋
+          %li
+            %a{:href => "#{staff_item_path(@item)}"}= @item.name
+          %li{:class => "#{"active" if current_page?(controller: "staff/photos")}"}
+            新增圖片
+      .panel-heading
+        .panel-title
+          新增圖片
+          %br/
+          %p.center
+            商品名稱： #{@item.name}
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .panel-body
+        = form_for [:staff, @item, @photo], html: { multipart: true, class: "form-horizontal" } do |f|
+          .form-group
+            = f.label "選擇圖片", class: "col-sm-2 control-label"
+            .col-sm-10
+              = file_field_tag "images[]", { multiple: true, class: "form-control" }
+          .form-group
+            = f.label :photo_intro, "圖片描述", class: "col-sm-2 control-label"
+            .col-sm-10
+              = f.text_area :photo_intro, rows: 6, class: "form-control", placeholder: "請輸入描述"
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              = f.submit "確認送出", class: "btn btn-primary"
+              = link_to "取消離開", staff_item_photos_path(@item), class: "btn btn-warning"

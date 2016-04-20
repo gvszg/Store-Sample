@@ -1,0 +1,32 @@
+!!!
+%html{:lang => "zh-Hant-TW"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title 萌萌屋
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    = stylesheet_link_tag "admin", media: "all"
+    = yield :form_css
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    = csrf_meta_tags
+  %body
+    .header
+      = render "layouts/navbar"
+    .page-content
+      .row
+        .col-md-2
+          = render "layouts/sidebar"
+        .col-md-10
+          = notice_message
+          / Main Content
+          = yield
+    %footer
+      .container
+        .copy.text-center
+          © 2016 Copyright.
+    %script{:src => "https://code.jquery.com/jquery.js"}
+    = javascript_include_tag "admin"
+    = yield :form_javascript

@@ -1,0 +1,33 @@
+%div{:clas => "row"}
+  .content-box-large
+    %h2
+      用戶名稱：#{@user.user_name}
+    .user-infos.well
+      %p.lead 用戶資料：
+      %dl.dl-horizontal
+        %dt 真實姓名
+        %dd= @user.real_name
+        %dt 性別
+        %dd= @user.gender
+        %dt 註冊地址
+        %dd= @user.address
+        %dt 註冊電話
+        %dd= @user.phone
+        %dt UID
+        %dd= @user.uid
+    .user-orders-list.well
+      %p.lead 用戶訂單：
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th 訂單編號
+            %th 訂單金額
+            %th 訂單狀態
+            %th 訂購明細
+        %tbody
+          - @user.orders.each do |order|
+            %tr
+              %td= order.id
+              %td= order.total
+              %td= order.status
+              %td= render(partial: "admin/orders/info_and_items_list", locals: { order: order })

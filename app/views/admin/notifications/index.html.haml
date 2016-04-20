@@ -1,0 +1,18 @@
+%div{:clas => "row"}
+  .content-box-large
+    .breadcrumb-topbar
+      %ol.breadcrumb
+        %li
+          %a{:href => admin_root_path} 萌萌屋
+        %li{:class => "#{"active" if current_page?(controller: "admin/notifications", action: "index")}"} 推播訊息列表
+    .pull-right
+      = link_to "新增訊息", new_admin_notification_path, { class: "btn btn-primary" }
+    %h2 推播訊息列表
+    .category-all-items
+      .panel-body
+        .apple_pagination
+          = will_paginate @notification_page, :container => false
+        %br/
+        = render "notification_table"
+        .apple_pagination
+          = will_paginate @notification_page, :container => false

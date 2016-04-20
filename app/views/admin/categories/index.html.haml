@@ -1,0 +1,17 @@
+.row
+  .row
+    .col-md-12.panel-warning
+      .content-box-header.panel-heading
+        .panel-title 分類列表
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .content-box-large.box-with-header
+        .pull-right
+          = link_to "新增分類", new_admin_category_path, class: "btn btn-primary btn-sm"
+        %ul
+          - @categories.each do |category|
+            = link_to admin_category_path(category) do
+              %li= category.name

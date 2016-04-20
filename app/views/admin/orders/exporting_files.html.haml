@@ -1,0 +1,35 @@
+.row
+  .row
+    .col-md-12.panel-warning
+      .content-box-header.panel-heading
+        .panel-title 訂單配送列表
+      .content-box-large.box-with-header
+        .apple_pagination
+          = will_paginate @order_for_file_page, :container => false
+        .panel-body
+          %table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+            %div
+              %p
+                下載：
+                \#{link_to "CSV檔", exporting_files_admin_orders_path(format: "csv",page: params[:page])}
+            %thead
+              %tr
+                %th 配送類別
+                %th 訂單類別
+                %th 取件人姓名
+                %th 取件人手機
+                %th 取件人電子郵件
+                %th 取件門市
+                %th 訂單金額
+            %tbody
+              - @orders_for_file.each do |order|
+                %tr
+                  %td K
+                  %td 1
+                  %td= order.info_user_name
+                  %td= phone_number_looking(order)
+                  %td kosbrotherschool@gmail.com
+                  %td= order.info_store_code
+                  %td= order.total
+        .apple_pagination
+          = will_paginate @order_for_file_page, :container => false

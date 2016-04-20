@@ -1,0 +1,21 @@
+.row
+  .row
+    .col-md-10
+      .content-box-large
+        .breadcrumb-topbar
+          %ol.breadcrumb
+            %li
+              %a{:href => "#"} 首頁
+            %li{:class => "#{"active" if current_page?(controller: "admin/categories", action: "index")}"}
+              %a{:href => admin_categories_path} 分類列表
+            %li{:class => "#{"active" if current_page?(controller: "admin/categories", action: "new")}"} 新增分類
+        .panel-heading
+          .panel-title 新增分類
+          .panel-options
+            %a{"data-rel" => "collapse", :href => "#"}
+              %i.glyphicon.glyphicon-refresh
+            %a{"data-rel" => "reload", :href => "#"}
+              %i.glyphicon.glyphicon-cog
+        .panel-body
+          = form_for [:admin, @category], html: { class: "form-horizontal" } do |f|
+            = render partial: "form", locals: { f: f }

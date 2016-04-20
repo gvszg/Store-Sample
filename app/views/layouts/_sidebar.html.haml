@@ -1,0 +1,93 @@
+.sidebar.content-box{:style => "display: block;"}
+  %ul.nav
+    / Main menu
+    %li.current
+      %a{:href => admin_root_path}
+        %i.glyphicon.glyphicon-home
+        管理首頁
+    %li
+      %a{:href => new_admin_item_path}
+        %i.glyphicon.glyphicon-plus
+        新增商品
+    %li.submenu
+      %a{:href => "#"}
+        %i.glyphicon.glyphicon-list-alt
+        分類管理
+        %span.caret.pull-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => admin_categories_path}
+            分類列表
+        - Category.all.each do |category|
+          %li
+            %a{:href => "#{admin_category_path(category)}"}
+              = category.name
+        %li
+          %a{:href => new_admin_category_path}
+            新增分類
+    %li.submenu
+      %a{:href => "#"}
+        %i.glyphicon.glyphicon-user
+        用戶管理
+        %span.caret.pull-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => admin_users_path}
+            用戶資料列表
+        %li
+          %a{:href => "#"}
+            用戶選項
+    %li.submenu
+      %a{:href => "#"}
+        %i.fa.fa-shopping-bag>
+        訂單管理
+        %span.caret.pul-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => admin_orders_path} 訂單列表
+        %li
+          %a{:href => exporting_files_admin_orders_path} 寄件列表
+        %li
+          %a{:href => "#"} 訂單選項
+    %li.submenu
+      %a{:href => "#"}
+        %i.fa.fa-bell>
+        推播管理
+        %span.caret.pul-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => admin_notifications_path} 推播訊息
+        %li
+          %a{:href => "#"} 註冊裝置
+    %li.submenu
+      %a{:href => "#"}
+        %i.glyphicon.glyphicon-stats>
+        統計圖表
+        %span.caret.pul-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => "#"}
+            銷售圖表
+        %li
+          %a{:href => "#"}
+            圖表選項
+    %li
+      %a{:href => "#"}
+        %i.glyphicon.glyphicon-calendar
+        Calendar
+    %li.submenu
+      %a{:href => "#"}
+        %i.glyphicon.glyphicon-list
+        Pages
+        %span.caret.pull-right
+      / Sub menu
+      %ul
+        %li
+          %a{:href => "#"} Login
+        %li
+          %a{:href => "#"} Signup

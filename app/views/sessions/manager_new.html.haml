@@ -1,0 +1,14 @@
+%div
+  %h1 請登入
+  %div
+    = form_tag mmw_signin_path do
+      = label_tag :email, "Email", placeholder: "請輸入Email"
+      = email_field_tag :email, nil
+      %hr/
+      = label_tag :password, "密碼", placeholder: "請輸入密碼"
+      = password_field_tag :password, nil
+      %hr/
+      = check_box_tag :remember_me, 1, params[:remember_me]
+      = label_tag :remember_me, "記住我"
+      %hr/
+      = submit_tag "確認"

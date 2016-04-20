@@ -1,0 +1,28 @@
+.panel-body
+  %table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    .pull-right
+      = link_to "返回上頁", staff_item_path(@item), class: "btn btn-default btn-sm"
+      = link_to "新增圖片", new_staff_item_photo_path, class: "btn btn-primary btn-sm"
+    .breadcrumb-topbar
+      %ol.breadcrumb
+        %li
+          %a{:href => staff_root_path} 萌萌屋
+        %li
+          %a{:href => "#{staff_item_path(@item)}"}= @item.name
+        %li{:class => "#{"active" if current_page?(controller: "staff/photos")}"}
+          圖片列表
+    %thead
+      %tr
+        %th 圖片
+        %th 圖片敘述
+        %th 操作選項
+    %tbody
+      - @photos.each do |photo|
+        %tr
+          %td
+            = item_photo(photo, "thumb")
+          %td= raw photo.photo_intro
+          %td
+            = button_tag "編輯", data: { toggle: "modal", target: "#photo-#{photo.id}-edit" }, type: "button", class: "btn btn-default btn-xs"
+            = render partial: "edit_form", locals: { photo: photo }
+            = link_to "刪除", staff_item_photo_path(@item, photo), method: :delete, data: { confirm: "確定刪除?", disable_with: "刪除中..." }, class: "btn btn-danger btn-xs"

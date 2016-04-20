@@ -1,0 +1,21 @@
+.row
+  .row
+    .col-md-10
+      .content-box-large
+        .breadcrumb-topbar
+          %ol.breadcrumb
+            %li
+              %a{:href => staff_root_path} 萌萌屋
+            %li{:class => "#{"active" if current_page?(new_staff_item_path)}"}
+              = action_name == "new" ? "新增商品" : "編輯商品"
+        .panel-heading
+          .panel-title
+            = item_title
+          .panel-options
+            %a{"data-rel" => "collapse", :href => "#"}
+              %i.glyphicon.glyphicon-refresh
+            %a{"data-rel" => "reload", :href => "#"}
+              %i.glyphicon.glyphicon-cog
+        .panel-body
+          = form_for [:staff, @item], html: { class: "form-horizontal" } do |f|
+            = render partial: "form", locals: { f: f }

@@ -1,0 +1,18 @@
+.row
+  .row
+    .col-md-12.panel-warning
+      .content-box-header.panel-heading
+        .panel-title 用戶列表
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.glyphicon.glyphicon-refresh
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.glyphicon.glyphicon-cog
+      .content-box-large.box-with-header
+        .apple_pagination
+          = will_paginate @user_page, :container => false
+        %br/
+        = render "user_table"
+        .apple_pagination
+          = will_paginate @user_page, :container => false
+        %br/

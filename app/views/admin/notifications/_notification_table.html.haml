@@ -1,0 +1,24 @@
+%table#example.table.table-striped.table-bordered{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+  %thead
+    %tr
+      %th 訊息編號
+      %th 訊息標題
+      %th 訊息圖片
+      %th 操作選項
+  %tbody
+    - @notifications.each do |notification|
+      %tr
+        %td
+          = link_to notification.id, admin_notification_path(notification)
+        %td
+          = link_to notification.content_title, admin_notification_path(notification)
+        %td
+          = image_tag(notification.send_content_pic, size: "100x100")
+        %td
+          .dropdown
+            %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              按此選擇
+              %span.caret
+            %ul.dropdown-menu.list-group{"aria-labelledby" => "dropdownMenu4"}
+              %li= link_to "編輯"
+              %li= link_to "刪除"
