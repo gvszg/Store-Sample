@@ -27,7 +27,7 @@ gem 'will_paginate', '~> 3.0.5'
 gem "jquery-fileupload-rails"
 gem 'bcrypt', '~> 3.1.7'
 gem 'gcm'
-
+gem "haml-rails", "~> 0.9"
 
 gem 'fog'
 # For carawl cvs data setup
@@ -45,7 +45,6 @@ group :development do
   gem 'faker'
   gem 'pry-rails'
   gem "letter_opener"
-  gem "haml-rails", "~> 0.9"
 
   # 檢查安全性
   gem 'brakeman', :require => false

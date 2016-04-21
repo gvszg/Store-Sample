@@ -42,6 +42,6 @@ class Admin::CategoriesController < AdminController
   end
 
   def find_category
-    @category = Category.includes(:items).find(params[:id])
+    @category = Category.find(params[:id])
   end
 end

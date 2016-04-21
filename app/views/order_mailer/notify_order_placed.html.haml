@@ -1,2 +1,42 @@
-%div
-  %p 這是測試
+.row
+  .col-md-12
+    %table{:align => "center"}
+      %tbody
+        %tr
+          %td
+            %h2 萌萌屋感謝您！
+            %p 親愛的萌友，
+            %p 您的訂單已經成立，商品將於10個工作天內寄送至指定門市。
+            %p 詳細資訊與購物內容可於萌萌屋App「我的訂單」裡查詢。         
+        %tr
+          %td
+            %h2 以下是您這次訂購的商品
+            %table
+              %thead
+                %tr
+                  %th 商品明細
+                  %th 單價
+                  %th 數量
+                  %th 小記
+              %tbody
+                - @order_items.each do |order_item|
+                  %tr
+                    %td
+                      = order_item.item_name
+                    %td
+                      = order_item.item_price
+                    %td
+                      = order_item.item_quantity
+                    %td
+                      = order_item.item_quantity * order_item.item_price
+        %tr
+          %td
+            %p 若有任何問題，請聯繫我們客服。
+            %p 萌萌期待您的再次光臨！
+            %p 萌萌屋
+            %p 聯絡客服
+            %p 
+              %span
+                Line
+              %span      
+                Facebook
