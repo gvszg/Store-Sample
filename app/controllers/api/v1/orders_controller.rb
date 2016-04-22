@@ -19,6 +19,8 @@ class Api::V1::OrdersController < ApiController
       info.ship_store_code = params[:ship_store_code]
       info.ship_store_id = params[:ship_store_id]
       info.ship_store_name = params[:ship_store_name]
+      # 在OrderInfo做Regexp判斷
+      info.insert_user_email(params[:ship_email], order)
       info.save!
 
       # 商品明細 OrderItem
