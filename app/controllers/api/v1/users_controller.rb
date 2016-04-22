@@ -1,19 +1,16 @@
 class Api::V1::UsersController < ApiController
   # TODO 重構整理
   def create
-    begin
-      user = User.new
-      user.user_name = params[:user_name]
-      user.real_name = params[:real_name]
-      user.gender = params[:gender]
-      user.phone = params[:phone]
-      user.address = params[:address]
-      user.uid = params[:uid]
-      user.save!
-      render json: "Successfully Create"
-    rescue Exception => e
-      render json: "Error"
-    end
+    user = User.find_or_initialize_by(email: params[:email])
+    user.user_name = params[:user_name]
+    user.real_name = params[:real_name]
+    user.gender = params[:gender]
+    user.phone = params[:phone]
+    user.address = params[:address]
+    user.uid = params[:uid]
+    user.email = params[:email]
+    user.save!
+    render json: "Successfully Create"
   end
 
   def show

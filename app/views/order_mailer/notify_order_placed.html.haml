@@ -1,4 +1,3 @@
-%link{:href => "/assets/admin.css", :rel => "stylesheet", :type => "text/css"}
 .row
   .col-md-12
     %table{:align => "center"}
@@ -30,6 +29,15 @@
                       = order_item.item_quantity
                     %td
                       = order_item.item_quantity * order_item.item_price
+            %br
+            %table
+              %tr
+                運費
+                = @order.ship_fee
+                %hr
+              %tr
+                總計
+                = @order.total
         %tr
           %td
             %p 若有任何問題，請聯繫我們客服。
@@ -38,6 +46,6 @@
             %p 聯絡客服
             %p 
               %span
-                Line
-              %span      
-                Facebook
+                = link_to "Line@ 客服", "http://line.me/ti/p/%40kya5456n"
+              %span
+                = link_to "FB 粉絲頁", "https://www.facebook.com/kingofgametw/"

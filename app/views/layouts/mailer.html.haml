@@ -1,4 +1,11 @@
 !!!
-%html
+%html{:lang => "zh-Hant-TW"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    / = stylesheet_link_tag "admin", media: "all"
+    :css
+      .red {
+        color: red;
+      }
   %body
     = yield
